@@ -1,0 +1,18 @@
+{
+  "name": "budget-review",
+  "owner": {
+    "name": "Jui Park",
+    "url": "https://github.com/parkjui92"
+  },
+  "metadata": {
+    "description": "국회 예결산 검토보고서 작성팀 플러그인 마켓플레이스 (국회사무처 의정연수원 교육용)"
+  },
+  "plugins": [
+    {
+      "name": "budget-review",
+      "source": "./",
+      "description": "예결산 검토보고서 작성팀(5인): 검토설계 → 관문① → 쟁점 승인 → 자료조사 → 집필 → 검산 게이트 → 관문② → 한글(.hwpx) 변환",
+      "version": "0.1.0"
+    }
+  ]
+}

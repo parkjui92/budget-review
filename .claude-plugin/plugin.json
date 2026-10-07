@@ -1,0 +1,25 @@
+{
+  "name": "budget-review",
+  "description": "예결산 검토보고서 작성팀 — 검토설계 → 관문①(설계 판정) → 쟁점 사용자 승인 → 자료조사(출처·조회일·잠정 여부 병기) → 집필 → 검산 게이트(fiscal_check) → 관문②(초안 검수) → 예결위 편집 양식 한글(.hwpx) 변환. 「예결산검토 표준교재」 7권의 분석 착안사항을 점검 질문으로 새로 써 넣은 국회 직원 교육용 에이전트 팀.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jui Park",
+    "url": "https://github.com/parkjui92"
+  },
+  "homepage": "https://github.com/parkjui92/budget-review",
+  "repository": "https://github.com/parkjui92/budget-review",
+  "license": "MIT",
+  "keywords": [
+    "budget-review",
+    "settlement",
+    "national-assembly",
+    "fiscal",
+    "agent-team",
+    "verification-gate",
+    "hwpx",
+    "korean",
+    "claude-code-plugin",
+    "예결산",
+    "검토보고서"
+  ]
+}

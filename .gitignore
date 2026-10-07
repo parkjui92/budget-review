@@ -1,0 +1,18 @@
+# 인증키 — 절대 올리지 않는다
+.env
+.env.*
+!.env.example
+
+# 실행 산출물 — 담당 사업 자료와 초안이 담긴다
+_workspace/
+_workspace_*/
+
+# 실물 자료 — 부처 제출자료·검토보고서 원본은 저장소에 두지 않는다
+*.hwp
+*.hwpx
+# 완주 예시의 산출물은 남긴다
+!examples/**/*.hwpx
+
+__pycache__/
+*.pyc
+.DS_Store
