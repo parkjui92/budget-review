@@ -10,7 +10,8 @@ _workspace_*/
 # 실물 자료 — 부처 제출자료·검토보고서 원본은 저장소에 두지 않는다
 *.hwp
 *.hwpx
-# 완주 예시의 산출물은 남긴다
+# 완주 예시의 산출물은 남긴다(내려받은 공개 원문은 각 예시 폴더의 .gitignore가 막는다)
+!examples/**/_workspace/
 !examples/**/*.hwpx
 
 __pycache__/

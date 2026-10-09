@@ -1,6 +1,6 @@
 # budget-review — 예결산 검토보고서 작성팀
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](.claude-plugin/plugin.json)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](.claude-plugin/plugin.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-purple.svg)
 
@@ -77,7 +77,7 @@ github.com/parkjui92/budget-review 플러그인 설치해줘
 |---|---|---|
 | Python 3 | 검산 게이트(표준 라이브러리만, 설치할 것 없음) | 검산을 할 수 없다 — 필수 |
 | [kordoc](https://github.com/chrisryugj/kordoc) MCP (Node.js 20 이상) | 한글 자료 읽기, `.hwpx` 변환 | 마크다운까지 정상 산출, 변환만 보류 |
-| 인증키(`.env`) | 열린재정 OpenAPI·열린국회정보·국가법령정보 | 웹 조회와 sample 키로 진행 |
+| 인증키(`.env`) | 열린재정 OpenAPI·열린국회정보·국가법령정보 | 웹 조회와 키 없는 조회(열린국회정보 5건)로 진행 |
 
 인증키는 작업 폴더의 `.env`에 둡니다. **채팅창에 붙여 넣지 않습니다.** 키 이름: [skills/budget-sources/SKILL.md](skills/budget-sources/SKILL.md)
 
@@ -86,7 +86,7 @@ github.com/parkjui92/budget-review 플러그인 설치해줘
 - 검토 기준(`skills/review-criteria/references/`)은 국회의정연수원 「예결산검토 표준교재」(2024) 7권
   (세입·보조금·출연금·SOC·특별회계·기금·공공기관)의 분석 착안사항을 **점검 질문으로 새로 쓴 것**입니다.
   **교재 원문은 수록하지 않았습니다.** 질문마다 교재 쪽을 달아 두었으니 **원문은 교재에서 확인**하십시오. 교재의 저작권은 국회사무처에 있습니다
-- 검토보고서 문체·번호 체계·지적의 짜임 규격(`skills/review-writing`)은 2025회계연도 결산 검토보고 6개 분책을 계량해 뽑은 것입니다. 검토항목 제목 예시 몇 줄 외에 검토보고서 원문은 수록하지 않았습니다
+- 검토보고서 문체·번호 체계·지적의 짜임 규격(`skills/review-writing`)은 2025회계연도 결산 검토보고 6개 분책과 2026년도 예산안 검토보고 6권을 같은 방법으로 계량해 뽑은 것입니다. 검토항목 제목 예시 몇 줄 외에 검토보고서 원문은 수록하지 않았습니다
 - 감사원 감사결과는 공공누리 제4유형(변경금지)입니다. 발간물에 실을 때는 이용조건을 확인하십시오
 - 공정·관문·판정서 방식은 같은 저자의 [policy-research-kit](https://github.com/parkjui92/policy-research-kit)에서 가져와 예결산 검토보고서에 맞게 바꿨습니다
 
@@ -97,7 +97,7 @@ github.com/parkjui92/budget-review 플러그인 설치해줘
 - 검수관도 같은 계열의 AI라 비슷한 착각을 할 수 있습니다. 관문은 오류를 줄이지만 없애지 못합니다
 - **공개 자료를 전제합니다.** 미공개 부처 제출자료·심사 전 내부자료·개인정보를 넣지 마십시오
 - 검토 기준의 법령·제도는 교재 기준 시점(2024년 8월)입니다. 조문은 인용 전에 현행 원문으로 확인합니다
-- 문체 규격은 **결산** 검토보고서 계량에서 나왔습니다. 예산안 검토는 같은 문체로 쓰되 실물이 있으면 그 골격을 따릅니다
+- 문체 규격은 예결위의 **2025회계연도 결산**(6권)과 **2026년도 예산안**(6권) 검토보고서 계량에서 나왔습니다. 상임위 예비심사검토보고서는 위원회마다 골격이 달라, 그 위원회의 직전 보고서를 입력으로 주면 그 골격을 따릅니다
 - 한글 변환은 실물 검토보고서(.hwpx)를 주면 그 **표 서식**을 따릅니다. 머리말·쪽번호·표지 같은 편집 요소는 한글에서 손으로 맞춰야 할 수 있습니다
 - 자료원 경로는 2026-09-13 기준입니다. 기관·시스템 개편으로 바뀔 수 있습니다
 

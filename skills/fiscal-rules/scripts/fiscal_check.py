@@ -22,12 +22,15 @@ fiscal_check — 예산·결산 표의 산술과 표기를 기계로 검산한�
   · 집행률(지출액÷예산현액)·증감률을 표 안의 값으로 다시 계산해 대조(새로 추가)
   · 음수 표기: 홀로 쓴 '-'(해당 없음)를 음수 부호로 읽어 '표기 혼용' 경고를 내던 것
   · 윈도 콘솔(cp949)에서 기호 출력으로 멈추지 않게 표준출력을 UTF-8로
+
+0.2.1 — 기금 표('계획액·계획변경·계획현액') 머리를 읽지 못해 틀린 표를 '통과'로 내보내던 것.
+  예산현액 자리의 '계획현액', 예산액 자리의 '계획액', 구성 열 '계획변경'을 같은 관계식으로 읽는다
 """
 from __future__ import annotations
 import argparse, html as htmlmod, re, sys, unicodedata
 from dataclasses import dataclass, field
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 # ── 수치 해석 ────────────────────────────────────────────────
 MINUS_MARKS = "△▲▽▼−–—"          # 정부 문서에서 음수로 쓰이는 기호들
@@ -260,7 +263,7 @@ def check_table(t: Table, rep: Report, strict_unit=True):
             rate_x = i
             break
     if rate_x is not None:
-        den = find_col(H, "예산현액")
+        den = find_col(H, "예산현액", "계획현액")
         if den is None and find_col(H, "예산액", "본예산") is not None:
             rep.add("warn", name, "집행률 분모 의심",
                     "표에 예산현액 열이 없다 — 집행률의 분모가 예산액이면 과대 계산된다")
@@ -324,7 +327,7 @@ def check_table(t: Table, rep: Report, strict_unit=True):
     def row_label(r):
         return (r[0] if r else "")[:26]
 
-    hx = cols_with(H, "예산현액")
+    hx = cols_with(H, "예산현액") or cols_with(H, "계획현액")   # 기금은 '계획현액'(= 예산현액 자리)
     prev_c, next_c, amb = carry_cols(H)
     sp = spend_col(H)
 
@@ -334,7 +337,10 @@ def check_table(t: Table, rep: Report, strict_unit=True):
         base = cols_with(H, "예산액")
         if not base:
             base = cols_with(H, "본예산") + cols_with(H, "추경")
-        comps = list(dict.fromkeys(prev_c + cols_with(H, "예비비") + cols_with(H, "전용") + cols_with(H, "이용")))
+        if not base:
+            base = cols_with(H, "계획액")                       # 기금: 계획액(당초)
+        comps = list(dict.fromkeys(prev_c + cols_with(H, "예비비") + cols_with(H, "전용") + cols_with(H, "이용")
+                                   + cols_with(H, "계획변경")))
         base = [c for c in base if c != ri and c not in comps]
         if len(base) in (1, 2) and comps and len(prev_c) <= 1:
             bad = 0
@@ -646,6 +652,22 @@ def selftest():
 | 다사업 | 3,100 | 3,000 |
 | 라사업 | 45,000,000 | 44,000,000 |
 """, "자릿수 이상")
+
+    # ── 0.2.1 기금 표 — 계획현액 머리 ──
+    fund = """기금 사업 결산 (단위: 백만원)
+
+| 사업명 | 계획액 | 전년도이월액 | 계획변경 | 계획현액(A) | 집행액(B) | 다음연도이월액 | 불용액 | 집행률(B/A) |
+|---|---|---|---|---|---|---|---|---|
+| 가사업 | 10,000 | 500 | △1,000 | 9,500 | 8,000 | 700 | 800 | 84.2 |
+"""
+    case("기금 표(계획현액)는 조용하다", fund, None, should_fail=False)
+    case("기금 표 — 불용액 불일치를 잡는다",
+         fund.replace("| 700 | 800 | 84.2 |", "| 700 | 900 | 84.2 |"), "가로 검산 불일치 — 불용액")
+    case("기금 표 — 집행률 불일치를 잡는다",
+         fund.replace("| 700 | 800 | 84.2 |", "| 700 | 800 | 90.0 |"), "집행률 불일치")
+    case("기금 표 — 계획현액 구성 불일치를 잡는다",
+         fund.replace("| 9,500 | 8,000 | 700 | 800 | 84.2 |", "| 10,500 | 8,000 | 700 | 1,800 | 76.2 |"),
+         "가로 검산 불일치 — 예산현액")
 
     # ── 0.2.0 회귀 — 맞는 표를 틀렸다고 하지 않는다 ──
     case("'○○회계'·'○○기금' 행은 합계행이 아니다", """소관 세출 결산 (단위: 백만원)

@@ -12,7 +12,7 @@
       "name": "budget-review",
       "source": "./",
       "description": "예결산 검토보고서 작성팀(5인): 검토설계 → 관문① → 쟁점 승인 → 자료조사 → 집필 → 검산 게이트 → 관문② → 한글(.hwpx) 변환",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

@@ -18,7 +18,7 @@ description: "예결산 검토에 쓰는 공개 자료원과 조회법. 열린�
 작업 폴더에 `.env` 파일을 만들고 키를 적는다. 키 이름은 아래로 통일한다(없는 키는 빼도 된다).
 ```
 OPENFISCAL_KEY=...      # 열린재정 OpenAPI
-ASSEMBLY_KEY=...        # 열린국회정보 (없으면 sample 키로 5건만)
+ASSEMBLY_KEY=...        # 열린국회정보 (없으면 KEY 항목을 빼고 조회 — 5건만)
 LAW_OC=...              # 국가법령정보 공동활용 인증값
 DATA_GO_KR_KEY=...      # 공공데이터포털(나라장터 등)
 KOSIS_KEY=...           # KOSIS
@@ -28,7 +28,7 @@ KOSIS_KEY=...           # KOSIS
 - 조회는 셸 변수로만 한다 — **명령어에 키 값을 직접 쓰지 않는다.** `-v` 같은 상세 출력을 켜지 않는다(URL이 찍힌다)
 ```bash
 set -a; . ./.env; set +a
-curl -s "https://open.assembly.go.kr/portal/openapi/BUDGETJUDGE?KEY=${ASSEMBLY_KEY:-sample}&Type=json&pIndex=1&pSize=5"
+curl -s -A "Mozilla/5.0" "https://open.assembly.go.kr/portal/openapi/BUDGETJUDGE?${ASSEMBLY_KEY:+KEY=$ASSEMBLY_KEY&}Type=json&pIndex=1&pSize=5"
 ```
 - 장부에 URL을 적을 때는 키 자리를 `KEY=〔키〕`로 가린다
 - 윈도에서 메모장으로 `.env`를 만들면 줄 끝 문자 때문에 키가 깨질 수 있다. 조회가 키 오류로 실패하면 `sed -i 's/\r$//' .env` 후 다시 한다
@@ -62,7 +62,7 @@ curl -s "https://open.assembly.go.kr/portal/openapi/BUDGETJUDGE?KEY=${ASSEMBLY_K
 ## 3. 열린국회정보 — 예결위 전용 API
 
 `https://open.assembly.go.kr/portal/openapi/{서비스ID}` · 인증키는 국회 SSO 로그인 후 발급
-(`KEY`·`Type`·`pIndex`·`pSize`. **`KEY=sample`은 키 없이 5건만** 돌려준다 — 실습용)
+(`KEY`·`Type`·`pIndex`·`pSize`. **`KEY` 항목을 빼면 키 없이 5건만** 돌려준다 — 실습용. `KEY=sample`을 붙이면 ERROR-290(인증키 무효)이 온다 · 2026-10-08 실측)
 
 | 서비스 | 서비스ID | 무엇이 나오나 |
 |---|---|---|
@@ -77,6 +77,16 @@ curl -s "https://open.assembly.go.kr/portal/openapi/BUDGETJUDGE?KEY=${ASSEMBLY_K
 - `BUDGETADJUDGE`로 **예비심사 의견과 종합심사 결과의 차이**를 대조할 수 있다. `BILL_ID`는 `BUDGETJUDGE`로 먼저 얻는다(두 단계 호출)
 - 널리 퍼진 "본회의 처리의안 — 결산=`nwbpacrgavhjryiph`" 매핑은 **틀렸다**(그 ID는 법률안이다)
 - 의안정보시스템 **예결산 심사연혁** `https://likms.assembly.go.kr/bill/bi/nafs/stats/inscHstPage.do` — 연도별 정부안 → 증액 → 감액 → 국회확정
+- **키 없는 조회의 한계** — `KEY`를 빼고 부르면 쪽번호·의안명 조건을 무시하고 오래된 의안 5건만 돌려준다(2026-10-09 실측). 특정 연도 결산·예산안의 `BILL_ID`는 키 없이는 얻을 수 없다 → 아래 경로를 쓴다
+
+### 3-1. 검토보고서 원문 받기 — 키 없이 되는 경로 (2026-10-09 확인)
+1. 예결위 누리집 의안 목록을 연다 — 예산안 `https://budget.na.go.kr/cmmit/bill/budget/billList.do?menuNo=2000092` · 결산 `…?menuNo=2000093`
+2. 의안명(`2024회계연도 결산`, `2026년도 예산안`)의 링크가 의안정보시스템 의안 페이지(`likms.assembly.go.kr/bill/billDetail.do?billId=…`)로 간다. 화면이 스크립트로 그려지므로 **브라우저로 연다**(WebFetch로는 목록이 안 보인다)
+3. 의안 페이지의 두 칸에 한글·PDF가 있다
+   - 「상임위 예비심사보고」 — 위원회별 **예비심사검토보고서**(소관 기관별 파일)
+   - 「예결위 심사정보」 — 예결위 **검토보고서**(총괄 + 부처별 분책)
+4. 파일 주소는 `https://likms.assembly.go.kr/filegate/servlet/FileGate?bookId=<ID>&type=0`. 받을 때 `curl -A "Mozilla/5.0" -L`처럼 브라우저 UA를 붙인다(기본 UA는 거부된다). `.hwp`는 `npx -y kordoc 파일 -o 파일.md`로 표째 읽는다(`hwp5txt`는 표를 `<표>`로 지운다)
+- **전년 지적의 1순위 자료원은 이것이다** — 직전 회계연도의 소관 상임위 예비심사검토보고서와 예결위 검토보고서. 같은 사업이 이미 검토항목으로 올라 있으면 그 문안·표가 가장 직접적인 근거다(국회예산정책처 분석보다 먼저 본다)
 
 ## 4. 국가법령정보 — 조문은 원문으로 확인한다
 
