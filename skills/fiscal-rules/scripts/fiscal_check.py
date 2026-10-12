@@ -49,12 +49,14 @@ def to_num(s: str):
         neg, t = True, t[1:]
     if t.startswith("(") and t.endswith(")"):
         neg, t = True, t[1:-1]
-    t = t.replace(",", "").replace("%", "").replace("원", "").strip()
-    if t.startswith("-"):
-        neg, t = True, t[1:]
-    if not re.fullmatch(r"\d+(?:\.\d+)?", t):
+    # 단위는 맨 끝에만, 쉼표는 세 자리 구분에만 허용한다.
+    # 아무 위치의 기호나 지우면 '10%20'→1020, '1,2'→12로 잘못 계산한다.
+    t = re.sub(r"\s*(?:%|원)$", "", t).strip()
+    if t.startswith(("-", "+")):
+        neg, t = neg or t[0] == "-", t[1:]
+    if not re.fullmatch(r"(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?", t):
         return None
-    v = float(t)
+    v = float(t.replace(",", ""))
     return -v if neg else v
 
 def is_numeric_cell(s: str) -> bool:
@@ -270,6 +272,17 @@ def check_table(t: Table, rep: Report, strict_unit=True):
 
     num_cols = [j for j in range(len(H))
                 if sum(1 for r in t.rows if j < len(r) and is_numeric_cell(r[j])) >= 2]
+    for j, heading in enumerate(H):
+        if j == 0 or not (j in num_cols or re.search(r"예산|계획|결산|집행|지출|금액|불용|이월|증감|20\d{2}", heading)):
+            continue
+        for row in t.rows:
+            if j >= len(row):
+                continue
+            raw = unicodedata.normalize("NFKC", str(row[j])).strip()
+            if (re.search(r"\d", raw) and re.fullmatch(r"[\d\s,.()%원+\-△▲▽▼−–—]+", raw)
+                    and to_num(raw) is None):
+                rep.add("fail", name, "수치 표기 오류",
+                        f"'{row[0]}' 행 '{heading}' 열 — '{raw}'를 숫자로 해석할 수 없다. 쉼표·단위 위치를 확인한다")
     kinds = [row_kind(r[0]) if r else "item" for r in t.rows]
     items = [r for r, k in zip(t.rows, kinds) if k == "item"]
     subs = [r for r, k in zip(t.rows, kinds) if k == "sub"]
