@@ -10,6 +10,12 @@
 검토설계자가 쟁점을 짜고, **검수관이 읽기 전용으로 판정**하고, 사람이 쟁점을 승인한 뒤에야 조사가 시작됩니다.
 집필이 끝나면 **검산기가 표를 기계로 다시 계산**하고, 통과하지 못하면 산출을 내보내지 않습니다.
 
+## 교육 자료 (2026. 10. 14. 국회사무처 의정연수원)
+
+- **[강의자료 보기](https://parkjui92.github.io/budget-review/lecture.html)** — 슬라이드(← → 키로 넘김, O 키로 목차)
+- **[API · MCP 도구 모음](https://parkjui92.github.io/budget-review/tools.html)** — 열린재정 · 열린국회정보 · 국가법령정보 · 감사원 · PIMAC · 나라장터 · KOSIS와 kordoc · korean-law 연결법
+
+
 ## 설치
 
 Claude Code에 이렇게 말하면 됩니다.

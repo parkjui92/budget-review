@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>예결산 API · MCP 도구 모음</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0E2140;--blue:#1F5FD1;--blue-tint:#EAF1FC;--coral:#C8553D;--coral-tint:#FBEDE8;--line:#D9E1EC;--muted:#5B6B82;--bg:#F6F8FB;--card:#fff;--text:#1B2638;--code:#0E2140;--codetext:#E8F0FC}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--navy:#DCE7F8;--blue:#7FA8F0;--blue-tint:#16253D;--coral:#F0937C;--coral-tint:#3A2420;--line:#2A3A52;--muted:#9AAAC0;--bg:#0D1524;--card:#14203A;--text:#E6ECF5;--code:#081022;--codetext:#E8F0FC}}
+:root[data-theme="dark"]{--navy:#DCE7F8;--blue:#7FA8F0;--blue-tint:#16253D;--coral:#F0937C;--coral-tint:#3A2420;--line:#2A3A52;--muted:#9AAAC0;--bg:#0D1524;--card:#14203A;--text:#E6ECF5;--code:#081022;--codetext:#E8F0FC}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.65;font-size:16px}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 16px 64px}
+header{border-bottom:2px solid var(--navy);padding-bottom:16px;margin-bottom:28px}
+.kick{font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--blue)}
+h1{font-size:30px;margin:6px 0 8px;color:var(--navy);line-height:1.3}
+.sub{color:var(--muted);margin:0}
+h2{font-size:21px;color:var(--navy);margin:40px 0 12px;padding-left:10px;border-left:5px solid var(--blue)}
+h3{font-size:17px;margin:0 0 6px;color:var(--navy)}
+p{margin:6px 0}
+a{color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card.warn{background:var(--coral-tint);border-color:var(--coral)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--blue-tint);color:var(--blue);margin-right:4px}
+.tag.c{background:var(--coral-tint);color:var(--coral)}
+.tbl{width:100%;overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:15px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--blue-tint);color:var(--navy);font-weight:800;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;background:var(--blue-tint);padding:1px 5px;border-radius:5px;word-break:break-all}
+.prompt{position:relative;background:var(--code);color:var(--codetext);border-radius:10px;padding:14px 16px;margin:8px 0;font-size:14.5px;white-space:pre-wrap;word-break:break-word}
+.prompt button{position:absolute;top:8px;right:8px;font:inherit;font-size:12px;border:0;border-radius:6px;padding:3px 9px;background:#2D5BB8;color:#fff;cursor:pointer}
+.note{font-size:14px;color:var(--muted)}
+footer{margin-top:48px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kick">국회사무처 의정연수원 · 생성형 AI 업무 활용(심화) 2026. 10. 14.</div>
+  <h1>예결산 검토 API · MCP 도구 모음</h1>
+  <p class="sub">검토보고서의 숫자와 근거를 AI가 <b>기억이 아니라 공식 창구</b>에서 가져오게 하는 도구와 자료원 · <a href="lecture.html">강의자료 보기</a> · <a href="https://github.com/parkjui92/budget-review">작성팀 저장소</a></p>
+</header>
+
+<h2>먼저 · 인증키는 채팅창이 아니라 .env</h2>
+<div class="grid">
+  <div class="card warn"><h3>지킬 것</h3>
+    <p>· 키를 <b>채팅창에 붙여 넣지 않음</b> · 대화 기록에 남음</p>
+    <p>· 작업 폴더의 <code>.env</code> 파일에 <b>내 손으로</b> 적고, AI에게 그 파일을 열어 보게 하지 않음</p>
+    <p>· 부서 저장소에 올릴 때는 <code>.gitignore</code>에 <code>.env</code> 한 줄 · 노출되면 재발급</p>
+    <p>· 유료 키(검색 · 모델 API)는 결제 수단이 묶여 있으니 한도부터 설정</p></div>
+  <div class="card"><h3>.env 키 이름 (작성팀과 같은 이름)</h3>
+    <div class="prompt">OPENFISCAL_KEY=      # 열린재정 OpenAPI
+ASSEMBLY_KEY=        # 열린국회정보
+LAW_OC=              # 국가법령정보 공동활용 인증값
+DATA_GO_KR_KEY=      # 공공데이터포털(나라장터 등)
+KOSIS_KEY=           # KOSIS</div>
+    <p class="note">없는 키는 비워 둬도 됨 · 윈도 메모장으로 만들었다가 키 오류가 나면 줄 끝 문자 문제일 수 있음</p></div>
+</div>
+
+<h2>MCP · AI에 꽂는 도구</h2>
+<p class="note">MCP는 도구를 AI에 붙이는 공통 규격. 연결은 <b>대화를 새로 열 때</b> 읽히므로, 작성팀을 돌리기 <b>전에</b> 연결하고 새 대화를 엶.</p>
+<div class="grid">
+  <div class="card"><h3>kordoc · 한글 문서 읽고 쓰기</h3>
+    <p><span class="tag">MIT</span><span class="tag">Node.js 20 이상</span></p>
+    <p>.hwp · .hwpx · PDF · 엑셀을 <b>표째</b> 읽고, 한글 문서를 만듦 · 사업설명자료 읽기와 예결위 양식 변환에 씀</p>
+    <p><a href="https://github.com/chrisryugj/kordoc">github.com/chrisryugj/kordoc</a></p>
+    <div class="prompt"><button type="button">복사</button>github.com/chrisryugj/kordoc 저장소를 열어서 README에 적힌 설치 방법대로 설치해줘. Node.js가 없으면 설치하기 전에 먼저 알려줘.</div>
+    <p class="note">구형 .hwp는 표가 뭉개질 수 있으니 원본과 대조 · 읽힐 파일은 공개 자료만</p></div>
+  <div class="card"><h3>korean-law · 법령 현행 확인</h3>
+    <p><span class="tag">MIT</span><span class="tag c">법제처 인증값(OC) 필요</span></p>
+    <p>법제처 국가법령정보를 감싼 도구 · 조문을 <b>원문 그대로 · 시행일과 함께</b> 가져옴</p>
+    <p><a href="https://github.com/chrisryugj/korean-law-mcp">github.com/chrisryugj/korean-law-mcp</a></p>
+    <div class="prompt"><button type="button">복사</button>github.com/chrisryugj/korean-law-mcp 저장소를 열어서 README에 적힌 대로 설치해줘. 인증키는 설치 중에 내가 직접 넣을게.</div>
+    <div class="prompt"><button type="button">복사</button>검토보고서 초안의 법령 인용이 전부 현행인지 확인해줘. 확인 못 한 인용은 [확인 필요]로 표시해줘.</div></div>
+  <div class="card"><h3>budget-review · 예결산 검토보고서 작성팀</h3>
+    <p><span class="tag">MIT</span><span class="tag">Claude Code 플러그인</span></p>
+    <p>검토설계자 · 자료조사관 · 집필가 · 검수관 · 변환가 다섯 팀원과 검산 게이트 · 아래 자료원을 근거 장부에 출처 · 조회일과 함께 씀</p>
+    <p><a href="https://github.com/parkjui92/budget-review">github.com/parkjui92/budget-review</a></p>
+    <div class="prompt"><button type="button">복사</button>parkjui92/budget-review 마켓플레이스를 추가하고 budget-review 플러그인을 설치해줘.</div></div>
+</div>
+
+<h2>API · 공식 자료원</h2>
+<p class="note">2026. 9. 13.~10. 9. 실제 접속 · 호출로 확인한 것 기준. 기관 · 시스템 개편으로 경로가 바뀔 수 있음.</p>
+<div class="tbl"><table>
+  <thead><tr><th>자료원</th><th>무엇이 나오나</th><th>주소 · 쓰는 법</th><th>키</th></tr></thead>
+  <tbody>
+    <tr><td><b>열린재정</b></td><td>세부사업 예산 · 결산 · <b>월별 집행</b> · 이월 · 불용 · 성과목표 달성도 · 재정사업평가 등급 · 성과계획서/보고서 원문</td><td><a href="https://www.openfiscaldata.go.kr">openfiscaldata.go.kr</a> (웹 조회는 로그인 불필요) · OpenAPI <code>https://openapi.openfiscaldata.go.kr/{서비스명}?Key=…&amp;Type=json</code></td><td>무료 · 회원 가입 후 신청</td></tr>
+    <tr><td><b>열린국회정보</b></td><td>예결산 심사정보(<code>BUDGETJUDGE</code>) · 예비심사 정보와 <b>예비심사 검토보고서 원문 주소</b>(<code>BUDGETADJUDGE</code>) · 종합심사 회의(<code>BUDGETJUDGECONF</code>) · 예결위 회의록(<code>VCONFBUDGETCONFLIST</code>) · 국정감사 결과보고서(<code>AUDITREPORTRESULT</code>)</td><td><a href="https://open.assembly.go.kr">open.assembly.go.kr</a> · <code>/portal/openapi/{서비스ID}?KEY=…&amp;Type=json&amp;pIndex=1&amp;pSize=…</code></td><td>무료 · <b>KEY를 빼면 샘플 5건</b>(<code>KEY=sample</code>은 오류)</td></tr>
+    <tr><td><b>검토보고서 원문</b></td><td>상임위 예비심사검토보고서 · 예결위 검토보고서(총괄 + 부처별 분책) 한글 · PDF</td><td>예결위 누리집 의안 목록 <a href="https://budget.na.go.kr/cmmit/bill/budget/billList.do?menuNo=2000092">예산안</a> · <a href="https://budget.na.go.kr/cmmit/bill/budget/billList.do?menuNo=2000093">결산</a> → 의안정보시스템 의안 페이지의 「상임위 예비심사보고」 · 「예결위 심사정보」 칸</td><td>불필요</td></tr>
+    <tr><td><b>국가법령정보</b></td><td>법령 · 시행령 · 행정규칙 · 자치법규 · 판례 · 해석례 원문</td><td><a href="https://open.law.go.kr/LSO/main.do">open.law.go.kr</a> · <code>https://www.law.go.kr/DRF/lawSearch.do?OC=…&amp;target=law&amp;type=JSON&amp;query=국가재정법</code></td><td>무료 · 공동활용 신청(OC)</td></tr>
+    <tr><td><b>감사원</b></td><td>분야 · 종류별 감사보고서 전문 · <b>기관별 처분요구</b></td><td><a href="https://www.bai.go.kr/bai/result/organ/list/">기관별 감사결과</a> · 공식 OPEN API 없음(누리집 화면) · 이용조건 공공누리 제4유형</td><td>불필요</td></tr>
+    <tr><td><b>KDI PIMAC</b></td><td>예비타당성조사 · 타당성재조사 보고서 · <b>재정사업 조사현황</b>(조사 완료 전 예산 반영 여부)</td><td><a href="https://pimac.kdi.re.kr/">pimac.kdi.re.kr</a></td><td>불필요</td></tr>
+    <tr><td><b>나라장터</b></td><td>낙찰 · 계약 · 계약변경이력 · 계약방법별 수의계약 비중</td><td>공공데이터포털 <code>https://apis.data.go.kr/1230000/…</code> · 웹 <a href="https://data.g2b.go.kr/">조달데이터허브</a></td><td>무료 · 자동승인(개발계정 일 1,000건)</td></tr>
+    <tr><td><b>KOSIS</b></td><td>부문별 공식 통계표 · 시계열 · 성과지표 모집단 · 추세 대조</td><td><a href="https://kosis.kr/openapi/">kosis.kr/openapi</a> · 통계표를 연 뒤 툴바 OPENAPI 버튼이 호출 주소를 만들어 줌</td><td>무료 · 신청</td></tr>
+    <tr><td><b>NABOSTATS</b></td><td>국회예산정책처 통계 · 「결산 시정요구 및 조치결과」(엑셀)</td><td><a href="https://www.nabostats.go.kr/">nabostats.go.kr</a></td><td>불필요</td></tr>
+  </tbody>
+</table></div>
+
+<h2>바로 써 보는 요청문</h2>
+<div class="grid">
+  <div class="card"><h3>국회 자료 창구 두드려 보기</h3>
+    <div class="prompt"><button type="button">복사</button>열린국회정보 예결산 심사정보(BUDGETJUDGE)를 인증키 항목 없이 조회해서 표로 보여주고, 조회한 URL을 그대로 알려줘.</div>
+    <p class="note">정식 키를 받은 뒤에는 '인증키 항목 없이'를 '.env의 키로'로 바꿈</p></div>
+  <div class="card"><h3>한글 사업설명자료 읽기</h3>
+    <div class="prompt"><button type="button">복사</button>지금 쓸 수 있는 MCP 도구 목록을 보여주고, 입력/ 폴더의 한글 사업설명자료를 표까지 그대로 정리해줘. 못 읽은 부분은 '읽기 실패'로 표시해줘.</div></div>
+  <div class="card"><h3>.env 만들기</h3>
+    <div class="prompt"><button type="button">복사</button>이 폴더에 .env 파일을 만들어줘. 항목은 LAW_OC 하나, 값은 비워 두고 내가 직접 넣을게. .gitignore에도 .env를 추가해서 실수로 공유되지 않게 해줘.</div></div>
+</div>
+
+<h2>공개 창구로는 못 구하는 것 · 자료요구 대상</h2>
+<div class="tbl"><table>
+  <thead><tr><th>무엇</th><th>왜</th></tr></thead>
+  <tbody>
+    <tr><td>dBrain⁺</td><td>공무원 업무망 전용 · 공개 창구는 열린재정뿐이고 세부사업 단위 집계가 최말단</td></tr>
+    <tr><td>성과계획서 · 보고서의 기계가독 형태</td><td>정부가 한글 · PDF로만 제공</td></tr>
+    <tr><td>재난안전 · 일자리 사업평가의 사업별 결과</td><td>보도자료만 공개</td></tr>
+    <tr><td>개별 계약 · 지급 건별 내역, 보조사업자 단계 실집행</td><td>열린재정은 총액 수준</td></tr>
+  </tbody>
+</table></div>
+
+<h2>수치가 서로 다를 때</h2>
+<div class="card"><p><b>① 확정 결산치</b> → <b>② 열린재정 공표치</b>(집행실적은 잠정치 · 조회일 병기) → <b>③ 부처 제출자료</b>(상세하지만 기준이 다를 수 있음) 순으로 채택. 어긋나면 <b>둘 다 적고 원인</b>을 씀 · 한쪽을 조용히 고르지 않음.</p>
+<p class="note">정부조직 개편 · 예산 · 성과관리는 기획예산처, 결산 · 국고 · 세제는 재정경제부, 통계는 국가데이터처 · 과거 시점의 집행 주체는 그 시점 이름 그대로</p></div>
+
+<footer>
+  자료원 조회법의 원본은 작성팀 스킬 <a href="https://github.com/parkjui92/budget-review/blob/main/skills/budget-sources/SKILL.md">skills/budget-sources</a> · 교육용 자료이며 각 기관의 공식 안내가 우선함 · 문의 parkjui92@gmail.com
+</footer>
+</div>
+<script>
+document.querySelectorAll('.prompt button').forEach(function(b){b.addEventListener('click',function(){var t=b.parentNode.textContent.replace(/^복사/,'').trim();try{navigator.clipboard.writeText(t);b.textContent='복사됨';setTimeout(function(){b.textContent='복사'},1200)}catch(e){}})});
+</script>
+</body>
+</html>
