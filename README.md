@@ -13,7 +13,7 @@
 ## 교육 자료 (2026. 10. 14. 국회사무처 의정연수원)
 
 - **[강의자료 보기](https://parkjui92.github.io/budget-review/lecture.html)** — 슬라이드(← → 키로 넘김, O 키로 목차)
-- **[내려받기 (.zip)](https://parkjui92.github.io/budget-review/downloads/budget-review_lecture_20261014.zip)** — 강의자료 html + API · MCP 도구 모음 html (인터넷 없이 열림)
+- **내려받기 (PDF)** — [강의자료 PDF](https://parkjui92.github.io/budget-review/downloads/lecture_20261014.pdf) · [API · MCP 도구 모음 PDF](https://parkjui92.github.io/budget-review/downloads/tools_api_mcp.pdf)
 - **[영상 모음](https://parkjui92.github.io/budget-review/videos.html)** — 작성팀이 도는 모습 4편 · 실습 다시 보기 4편
 - **[API · MCP 도구 모음](https://parkjui92.github.io/budget-review/tools.html)** — 열린재정 · 열린국회정보 · 국가법령정보 · 감사원 · PIMAC · 나라장터 · KOSIS와 kordoc · korean-law 연결법
 
