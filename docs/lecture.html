@@ -4149,27 +4149,6 @@ description: "예결산 검토보고서 작성팀의 팀장(조율) 스킬. … 
         <li>비교해 볼 것 — 창구 없이 물으면 기억으로 답해 의결일 · 처리결과가 틀려도 알 수 없음</li>
       </ul>
     </section>
-    <section class="slide" data-sid="b06">
-      <div class="eyebrow">Ⅳ · 실습 · 자료원 연결</div>
-      <h2>인증키 보관: 채팅창이 아니라 .env</h2>
-      <div class="rule"></div>
-      <p class="lead">무료 키든 유료 키든 둘 곳은 <mark>.env 파일</mark>, 값은 <b class="hot">내 손으로</b></p>
-      <div class="flow">
-        <div class="step"><b>① 신청</b>open.law.go.kr 가입 · 로그인 → Open API 신청 — 사전 과제</div><span class="arrow">→</span>
-        <div class="step"><b>② 발급</b>인증키(OC) — 무료 · 본인만 사용</div><span class="arrow">→</span>
-        <div class="step"><b>③ 저장</b>.env의 LAW_OC= 뒤에 직접 입력</div><span class="arrow">→</span>
-        <div class="step gate"><b>④ 제외</b>.gitignore에 .env 한 줄 · 노출되면 재발급</div>
-      </div>
-      <div class="prompt">이 폴더에 .env 파일을 만들어줘. 항목은 LAW_OC 하나, 값은 비워 두고 내가 직접 넣을게. .gitignore에도 .env를 추가해서 실수로 공유되지 않게 해줘.</div>
-      <table class="tight">
-        <thead><tr><th style="width:17%">키의 종류</th><th style="width:43%">예</th><th>발급 · 비용</th></tr></thead>
-        <tbody>
-          <tr><td class="em">무료 · 사전 신청</td><td>법제처 국가법령정보(OC)</td><td>강의 전 신청 — 오늘 ⑧에서 사용</td></tr>
-          <tr><td class="em">무료 · 로그인 발급</td><td>열린국회정보 · 열린재정 OPEN API</td><td>현업 과제</td></tr>
-          <tr><td class="em">유료 · 쓴 만큼</td><td>검색 API · 모델 API(Anthropic · OpenAI)</td><td>결제 수단을 묶어 발급 — <b class="hot">노출되면 요금 사고</b> · 한도부터 설정</td></tr>
-        </tbody>
-      </table>
-    </section>
     <section class="slide dense" data-sid="b07">
       <div class="eyebrow">Ⅳ · 실습 · 자료원 연결</div>
       <h2><span class="hands">★ 해보기 ⑧</span> korean-law 연결: 국가재정법 현행 확인</h2>
@@ -4218,6 +4197,27 @@ description: "예결산 검토보고서 작성팀의 팀장(조율) 스킬. … 
     <rect x="536" y="284" width="432" height="40" rx="8" fill="#16305a"/>
     <text x="552" y="310" class="uzw2">확인이 대화 안에서 끝남</text>
   </svg><figcaption>MCP는 매번 주소를 치던 일을 대화 안으로 들여놓는 것</figcaption></figure>
+    </section>
+    <section class="slide" data-sid="b06">
+      <div class="eyebrow">Ⅳ · 실습 · 자료원 연결</div>
+      <h2>인증키 보관: 채팅창이 아니라 .env</h2>
+      <div class="rule"></div>
+      <p class="lead">무료 키든 유료 키든 둘 곳은 <mark>.env 파일</mark>, 값은 <b class="hot">내 손으로</b></p>
+      <div class="flow">
+        <div class="step"><b>① 신청</b>open.law.go.kr 가입 · 로그인 → Open API 신청 — 사전 과제</div><span class="arrow">→</span>
+        <div class="step"><b>② 발급</b>인증키(OC) — 무료 · 본인만 사용</div><span class="arrow">→</span>
+        <div class="step"><b>③ 저장</b>.env의 LAW_OC= 뒤에 직접 입력</div><span class="arrow">→</span>
+        <div class="step gate"><b>④ 제외</b>.gitignore에 .env 한 줄 · 노출되면 재발급</div>
+      </div>
+      <div class="prompt">이 폴더에 .env 파일을 만들어줘. 항목은 LAW_OC 하나, 값은 비워 두고 내가 직접 넣을게. .gitignore에도 .env를 추가해서 실수로 공유되지 않게 해줘.</div>
+      <table class="tight">
+        <thead><tr><th style="width:17%">키의 종류</th><th style="width:43%">예</th><th>발급 · 비용</th></tr></thead>
+        <tbody>
+          <tr><td class="em">무료 · 사전 신청</td><td>법제처 국가법령정보(OC)</td><td>강의 전 신청 — 오늘 ⑧에서 사용</td></tr>
+          <tr><td class="em">무료 · 로그인 발급</td><td>열린국회정보 · 열린재정 OPEN API</td><td>현업 과제</td></tr>
+          <tr><td class="em">유료 · 쓴 만큼</td><td>검색 API · 모델 API(Anthropic · OpenAI)</td><td>결제 수단을 묶어 발급 — <b class="hot">노출되면 요금 사고</b> · 한도부터 설정</td></tr>
+        </tbody>
+      </table>
     </section>
     <section class="slide" data-sid="b09">
       <div class="eyebrow">Ⅳ · 실습 · 자료원 연결</div>
