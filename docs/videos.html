@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>작성팀 영상 모음</title>
+<style>
+:root{--navy:#0E2140;--blue:#1F5FD1;--blue-tint:#EAF1FC;--coral:#C8553D;--line:#D9E1EC;--muted:#5B6B82;--bg:#F6F8FB;--card:#fff;--text:#1B2638}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--navy:#DCE7F8;--blue:#7FA8F0;--blue-tint:#16253D;--coral:#F0937C;--line:#2A3A52;--muted:#9AAAC0;--bg:#0D1524;--card:#14203A;--text:#E6ECF5}}
+:root[data-theme="dark"]{--navy:#DCE7F8;--blue:#7FA8F0;--blue-tint:#16253D;--coral:#F0937C;--line:#2A3A52;--muted:#9AAAC0;--bg:#0D1524;--card:#14203A;--text:#E6ECF5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 16px 64px}
+header{border-bottom:2px solid var(--navy);padding-bottom:14px;margin-bottom:24px}
+.kick{font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--blue)}
+h1{font-size:28px;margin:6px 0;color:var(--navy)}
+.sub{color:var(--muted);margin:0}
+h2{font-size:20px;color:var(--navy);margin:34px 0 12px;padding-left:10px;border-left:5px solid var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card h3{font-size:17px;margin:4px 0 4px;color:var(--navy)}
+.card p{margin:4px 0;font-size:15px}
+.meta{font-size:13px;color:var(--muted)}
+video{width:100%;border-radius:8px;background:#000;display:block}
+a{color:var(--blue)}
+.note{font-size:14px;color:var(--muted)}
+footer{margin-top:44px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kick">국회사무처 의정연수원 · 생성형 AI 업무 활용(심화) 2026. 10. 14.</div>
+  <h1>예결산 검토보고서 작성팀 · 영상 모음</h1>
+  <p class="sub">작성팀이 실제로 어떻게 도는지 · 실습에서 막힌 곳 다시 보기 · <a href="lecture.html">강의자료</a> · <a href="tools.html">API · MCP 도구 모음</a> · <a href="https://github.com/parkjui92/budget-review">작성팀 저장소</a></p>
+</header>
+
+<h2>작성팀이 도는 모습</h2>
+<div class="grid">
+  <div class="card">
+    <video controls preload="none" playsinline poster="videos/v08_근거가_초안으로_가는_과정.png"><source src="videos/v08_근거가_초안으로_가는_과정.mp4" type="video/mp4"><track kind="subtitles" srclang="ko" label="한국어" src="videos/v08_근거가_초안으로_가는_과정.vtt" default></video>
+    <h3>근거가 초안으로 가는 과정</h3>
+    <p>근거가 장부에서 초안으로 옮겨 가고, 다시 계획하고, 검수가 오가는 모습 · 숫자만이 아니라 연도 · 단위 · 사업 범위 · 출처가 함께 따라와야 함</p>
+    <p class="meta">4분 14초 · 자막 · 2026. 10. 9. 사례 기록을 재구성 · 확인 필요 13곳 · 판단 필요 4곳이 남음</p>
+  </div>
+  <div class="card">
+    <video controls preload="none" playsinline poster="videos/v09_작성팀_실제_완주_기록.png"><source src="videos/v09_작성팀_실제_완주_기록.mp4" type="video/mp4"></video>
+    <h3>작성팀 실제 완주 기록</h3>
+    <p>설치본으로 킥오프 → 쟁점 승인 → 조사 · 집필 → 한글 초안까지 · 준비된 입력 13종으로 46분</p>
+    <p class="meta">2분 43초 · 무음 · 화면 녹화가 아니라 실행 기록을 발췌 · 축약해 재구성 · macOS · 주 모델 Opus 5.5 기준(다른 환경의 소요 시간과 다를 수 있음) · 확인 필요 61곳 · 판단 필요 11곳이 남음</p>
+  </div>
+  <div class="card">
+    <video controls preload="none" playsinline poster="videos/v04_검산게이트.png"><source src="videos/v04_검산게이트.mp4" type="video/mp4"><track kind="subtitles" srclang="ko" label="한국어" src="videos/v04_검산게이트.vtt"></video>
+    <h3>검산 게이트가 틀린 표를 잡는 장면</h3>
+    <p>일부러 틀린 표를 넣어 검산의 작동과 한계를 봄 · 통과는 검산기가 읽고 검사한 항목에서 불일치를 찾지 못했다는 뜻이고, 원자료와 단위는 따로 대조해야 함</p>
+    <p class="meta">1분 44초</p>
+  </div>
+  <div class="card">
+    <video controls preload="none" playsinline poster="videos/v03_검토보고서_한_건의_공정.png"><source src="videos/v03_검토보고서_한_건의_공정.mp4" type="video/mp4"><track kind="subtitles" srclang="ko" label="한국어" src="videos/v03_검토보고서_한_건의_공정.vtt"></video>
+    <h3>검토보고서 한 건이 만들어지는 길</h3>
+    <p>요청 → 검토설계 → 관문 → 쟁점 승인 → 조사 · 집필 → 검산 → 검수 → 한글 문서 · 전체 공정 복습용</p>
+    <p class="meta">1분 49초</p>
+  </div>
+</div>
+
+<h2>실습 다시 보기 · 막힌 곳만</h2>
+<p class="note">번호는 강의자료의 ★ 해보기 번호</p>
+<div class="grid">
+  <div class="card"><video controls preload="none" playsinline poster="videos/실습01_업무지침.png"><source src="videos/실습01_업무지침.mp4" type="video/mp4"></video><h3>해보기 ① 업무지침 다섯 줄</h3><p class="meta">15초 · 무음</p></div>
+  <div class="card"><video controls preload="none" playsinline poster="videos/실습03_팀_설치.png"><source src="videos/실습03_팀_설치.mp4" type="video/mp4"></video><h3>해보기 ③ 팀 플러그인 설치</h3><p class="meta">17초 · 무음</p></div>
+  <div class="card"><video controls preload="none" playsinline poster="videos/실습08_킥오프에서_쟁점승인까지.png"><source src="videos/실습08_킥오프에서_쟁점승인까지.mp4" type="video/mp4"></video><h3>해보기 ⑧ 킥오프에서 쟁점 승인까지</h3><p class="meta">47초 · 무음</p></div>
+  <div class="card"><video controls preload="none" playsinline poster="videos/실습12_판정표.png"><source src="videos/실습12_판정표.mp4" type="video/mp4"></video><h3>해보기 ⑫ 검산 · 출처 대조 판정표</h3><p class="meta">24초 · 무음</p></div>
+</div>
+
+<footer>
+  내레이션은 강사(박주이) 녹음을 바탕으로 로컬에서 만든 AI 합성 음성입니다 · 실행 장면은 실제 실행 기록을 재구성한 것입니다 · 문의 parkjui92@gmail.com
+</footer>
+</div>
+</body>
+</html>
