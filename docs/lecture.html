@@ -3601,88 +3601,16 @@ description: "예산·결산 수치를 다루는 작업에 '틀리면 안 되는
       <table class="tight"><tbody><tr><td class="em">읽는 것</td><td>04_검토보고서.md · 05_검수판정.md · 실물 .hwpx(있으면)</td></tr><tr><td class="em">내놓는 것</td><td>06_검토보고서.hwpx · 06a_변환용.md · 변환 보고</td></tr><tr><td class="em">도구</td><td>kordoc MCP · 읽기 · 쓰기</td></tr><tr><td class="em">하지 않는 것</td><td>문장 · 숫자 · 표시 고치기</td></tr></tbody></table>
     </section>
     <section class="slide dense" data-sid="k1">
-      <style>[data-sid="k1"] .grid-2{align-items:stretch;margin-bottom:10px}[data-sid="k1"] .grid-2>.card{justify-content:flex-start}[data-sid="k1"] .card li{font-size:17px;line-height:1.5}[data-sid="k1"] table td{font-size:16.5px;padding:7px 12px}</style>
+      <style>[data-sid="k1"] table td,[data-sid="k1"] table th{font-size:17px;padding:8px 12px}[data-sid="k1"] table code{font-size:15px}</style>
       <div class="eyebrow">Ⅲ · 작성팀 · 스킬</div>
-      <h2>review-criteria 스킬: 재원 유형별 검토 기준</h2>
+      <h2>작성팀의 스킬: 팀원이 읽는 절차서</h2>
       <div class="rule"></div>
-      <p class="lead">표준교재 7권 착안사항을 <b>재원 유형별 점검 질문</b>으로 새로 쓴 기준 파일 묶음</p>
-      <div class="grid-2">
-        <div class="card"><h3>담긴 것</h3><ul class="bullets tight"><li>재원 유형 판정 · 회계 · 지출 성격 · 집행 주체를 각각 물음</li><li>유형별 파일 7개 · 세입 · 보조금 · 출연금 · SOC · 특별회계 · 기금 · 공공기관</li><li>파일마다 판정 신호 · 제도 요점 · <b>단계별 착안사항 표</b></li><li>내_검토기준.md로 내 기준 더하기</li></ul></div>
-        <div class="card accent"><h3>누가 · 언제</h3><ul class="bullets tight"><li>검토설계자 · 착안사항 대조표 만들 때</li><li>검수관 · 관문①에서 착안사항 누락 확인</li><li>유형이 겹치면 파일을 모두 읽음 · 기금의 보조사업 = 6 + 2</li></ul></div>
-      </div>
-      <table class="tight"><tbody><tr><td class="em">파일</td><td>SKILL.md · references/1-revenue.md ~ 7-public-institution.md</td></tr><tr><td class="em">부르는 말</td><td>"이 사업 무엇을 봐야 하나" · "재원 유형 판정해줘"</td></tr><tr><td class="em">주의</td><td>교재 원문은 싣지 않음 · 판단이 걸리면 표시한 교재 쪽을 직접 폄</td></tr></tbody></table>
-    </section>
-    <section class="slide dense" data-sid="k2">
-      <style>[data-sid="k2"] .grid-2{align-items:stretch;margin-bottom:10px}[data-sid="k2"] .grid-2>.card{justify-content:flex-start}[data-sid="k2"] .card li{font-size:17px;line-height:1.5}[data-sid="k2"] table td{font-size:16.5px;padding:7px 12px}</style>
-      <div class="eyebrow">Ⅲ · 작성팀 · 스킬</div>
-      <h2>budget-sources 스킬: 자료원과 조회법</h2>
-      <div class="rule"></div>
-      <p class="lead">어디서 · 어떻게 · 무엇은 못 구하나 · <b>실제 호출로 확인한 것</b>만</p>
-      <div class="grid-2">
-        <div class="card"><h3>담긴 것</h3><ul class="bullets tight"><li>열린재정 화면 경로와 OpenAPI</li><li>열린국회정보 예결산 API 서비스ID</li><li>국가법령정보 · 감사원 · PIMAC · 나라장터 · KOSIS</li><li><b>검토보고서 원문</b>을 받는 경로</li></ul></div>
-        <div class="card accent"><h3>누가 · 언제</h3><ul class="bullets tight"><li>자료조사관 · 근거를 모을 때</li><li>검토설계자 · 자료요구 목록을 정할 때</li><li><b class="hot">인증키는 .env</b> · 채팅창에 붙이지 않음</li></ul></div>
-      </div>
-      <table class="tight"><tbody><tr><td class="em">파일</td><td>SKILL.md 하나 · 강의 「API · MCP 도구 모음」 페이지와 같은 내용</td></tr><tr><td class="em">부르는 말</td><td>"열린재정 조회해줘" · "이 자료 어디서 구해"</td></tr><tr><td class="em">주의</td><td>공개 창구로 못 구하는 것은 자료요구로 넘김 · 기관 개편으로 경로가 바뀔 수 있음</td></tr></tbody></table>
-    </section>
-    <section class="slide dense" data-sid="k3">
-      <style>[data-sid="k3"] .grid-2{align-items:stretch;margin-bottom:10px}[data-sid="k3"] .grid-2>.card{justify-content:flex-start}[data-sid="k3"] .card li{font-size:17px;line-height:1.5}[data-sid="k3"] table td{font-size:16.5px;padding:7px 12px}</style>
-      <div class="eyebrow">Ⅲ · 작성팀 · 스킬</div>
-      <h2>review-writing 스킬: 검토보고서 집필 규격</h2>
-      <div class="rule"></div>
-      <p class="lead">결산 6개 분책 · 예산안 6권을 <b>전수 계량</b>해 뽑은 하우스 스타일</p>
-      <div class="grid-2">
-        <div class="card"><h3>담긴 것</h3><ul class="bullets tight"><li>골격 · Ⅰ. 개관 → Ⅱ. 사업별 검토 → 시정요구 조치결과</li><li>번호 · Ⅰ → 【】 → &lt; &gt; → 1. → 가.</li><li>제목 「사업명: 지적 요지」 · 개조식 종결 · 어조 사다리</li><li><b>지적의 짜임</b> · 결론 → 근거 → 해명 → 반박 → 조치 요구</li></ul></div>
-        <div class="card accent"><h3>누가 · 언제</h3><ul class="bullets tight"><li>집필가 · 쓰기 전에 끝까지 읽음</li><li>검토설계자 · 목차 골격</li><li>변환가와의 약속 · 마크다운 표기 규칙</li></ul></div>
-      </div>
-      <table class="tight"><tbody><tr><td class="em">파일</td><td>SKILL.md · references/table-templates.md(고정 양식 표)</td></tr><tr><td class="em">부르는 말</td><td>집필가가 스스로 읽음 · "검토보고서 문체로 다시 써줘"</td></tr><tr><td class="em">주의</td><td>예산안 검토는 짜임은 같고 판정이 조정 의견으로 바뀜</td></tr></tbody></table>
-    </section>
-    <section class="slide dense" data-sid="k4">
-      <style>[data-sid="k4"] .grid-2{align-items:stretch;margin-bottom:10px}[data-sid="k4"] .grid-2>.card{justify-content:flex-start}[data-sid="k4"] .card li{font-size:17px;line-height:1.5}[data-sid="k4"] table td{font-size:16.5px;padding:7px 12px}</style>
-      <div class="eyebrow">Ⅲ · 작성팀 · 스킬</div>
-      <h2>fiscal-rules 스킬: 재정 수치 규칙과 검산기</h2>
-      <div class="rule"></div>
-      <p class="lead">틀리면 안 되는 것을 규칙으로 걸고 <b>표를 기계로 다시 계산</b></p>
-      <div class="grid-2">
-        <div class="card"><h3>담긴 것</h3><ul class="bullets tight"><li>급소 목록 · 회계연도 · 단위 · 분모 · 예산현액 · 이월 구분 · △ 부호 · 기관명</li><li>CLAUDE.md에 재정 규칙 블록 설치</li><li><b>fiscal_check.py</b> 검산기 · 표준 라이브러리만</li><li>불통과면 산출을 내보내지 않음</li></ul></div>
-        <div class="card accent"><h3>누가 · 언제</h3><ul class="bullets tight"><li>작업 시작 · 규칙 설치</li><li>수치를 다룰 때 · 급소 목록으로 되묻기</li><li>표를 만든 뒤 · 반드시 기계로 검산</li></ul></div>
-      </div>
-      <table class="tight"><tbody><tr><td class="em">잡는 것</td><td>단위 미표기 · 세로 합계 · 가로 관계식 · 집행률 · 증감 불일치 · 분모 미표기</td></tr><tr><td class="em">못 잡는 것</td><td><b class="hot">원자료에서 잘못 가져온 값</b> · 회계연도 착오 · 조문 오기 → 원문 대조로만</td></tr><tr><td class="em">파일</td><td>SKILL.md · scripts/fiscal_check.py · tests/sample_bad.md</td></tr></tbody></table>
-    </section>
-    <section class="slide dense" data-sid="k5">
-      <style>[data-sid="k5"] .grid-2{align-items:stretch;margin-bottom:10px}[data-sid="k5"] .grid-2>.card{justify-content:flex-start}[data-sid="k5"] .card li{font-size:17px;line-height:1.5}[data-sid="k5"] table td{font-size:16.5px;padding:7px 12px}</style>
-      <div class="eyebrow">Ⅲ · 작성팀 · 스킬</div>
-      <h2>review-check 스킬: 관문 판정 기준</h2>
-      <div class="rule"></div>
-      <p class="lead">검수관이 읽는 점검표 · <b>[필수]와 [권고]</b>를 가르는 기준</p>
-      <div class="grid-2">
-        <div class="card"><h3>담긴 것</h3><ul class="bullets tight"><li>관문① · 요청 반영 · 단계 · 재원 유형 · 착안사항 누락 · 반박 포인트</li><li>관문② · 쟁점 · 수치 대조 · 짜임 · 표시 · 검산 · 문체</li><li>판정서 양식 · 위치 · 문제 · 권고</li><li>축별 요약 · 잔여 리스크</li></ul></div>
-        <div class="card accent"><h3>누가 · 언제</h3><ul class="bullets tight"><li>검수관 · 관문①·②에서</li><li>팀장 · 판정서를 저장할 때 형식 확인</li><li><b class="hot">[필수] 하나라도 있으면</b> NO-GO · 수정 필요</li></ul></div>
-      </div>
-      <table class="tight"><tbody><tr><td class="em">파일</td><td>SKILL.md 하나</td></tr><tr><td class="em">[필수]</td><td>그대로 두면 틀린 보고서가 나가는 것</td></tr><tr><td class="em">[권고]</td><td>고치면 나아지는 것</td></tr></tbody></table>
-    </section>
-    <section class="slide dense" data-sid="k6">
-      <style>[data-sid="k6"] .grid-2{align-items:stretch;margin-bottom:10px}[data-sid="k6"] .grid-2>.card{justify-content:flex-start}[data-sid="k6"] .card li{font-size:17px;line-height:1.5}[data-sid="k6"] table td{font-size:16.5px;padding:7px 12px}</style>
-      <div class="eyebrow">Ⅲ · 작성팀 · 스킬</div>
-      <h2>hwpx-export 스킬: 예결위 양식 한글 문서 변환</h2>
-      <div class="rule"></div>
-      <p class="lead">번호 부호를 글자 그대로 지키고 <b>숫자로 1:1 대조</b></p>
-      <div class="grid-2">
-        <div class="card"><h3>담긴 것</h3><ul class="bullets tight"><li>시작 조건 · 관문② 통과</li><li>전처리 · 06a_변환용.md</li><li>kordoc <b>범용 모드</b> · 공문서 프리셋 쓰지 않음</li><li>다시 읽어 표 · 행 · 번호 부호 · 표시 개수 대조</li></ul></div>
-        <div class="card accent"><h3>누가 · 언제</h3><ul class="bullets tight"><li>변환가 · 변환할 때</li><li>팀장 · "hwpx만 다시" 요청</li><li>실물 검토보고서(.hwpx)가 있으면 표 서식 프로필을 따름</li></ul></div>
-      </div>
-      <table class="tight"><tbody><tr><td class="em">파일</td><td>SKILL.md 하나</td></tr><tr><td class="em">필요</td><td>kordoc MCP · Node.js 20 이상</td></tr><tr><td class="em">막힐 때</td><td>kordoc이 없으면 변환을 보류하고 설치법 안내 · 원고는 04 마크다운으로 남김</td></tr></tbody></table>
-    </section>
-    <section class="slide dense" data-sid="k7">
-      <style>[data-sid="k7"] .grid-2{align-items:stretch;margin-bottom:10px}[data-sid="k7"] .grid-2>.card{justify-content:flex-start}[data-sid="k7"] .card li{font-size:17px;line-height:1.5}[data-sid="k7"] table td{font-size:16.5px;padding:7px 12px}</style>
-      <div class="eyebrow">Ⅲ · 작성팀 · 스킬</div>
-      <h2>audit-followup 스킬: 시정요구 조치결과 역검증</h2>
-      <div class="rule"></div>
-      <p class="lead">정부의 "조치완료" 보고를 <b>실제 제도 변경 · 집행</b>으로 다시 확인</p>
-      <div class="grid-2">
-        <div class="card"><h3>담긴 것</h3><ul class="bullets tight"><li>대상 · 국회 시정요구 · 감사원 처분요구 · 국감 시정요구</li><li>자기보고 정리 → 열린재정 · 나라장터 · 법령 · 예산안으로 역검증</li><li>판정 · 이행 · 부분 이행 · <b class="hot">형식 이행</b> · 미이행</li><li>연례 반복 계열 묶기</li></ul></div>
-        <div class="card accent"><h3>누가 · 언제</h3><ul class="bullets tight"><li>결산 검토보고서 「시정요구사항 조치결과」 절</li><li>"조치완료라는데 진짜인지" 확인할 때</li><li>AI는 후보 좁히기까지 · 인정 여부는 사람이 판단</li></ul></div>
-      </div>
-      <table class="tight"><tbody><tr><td class="em">산출</td><td>표 H 유형별 현황 · 표 I 후속 조치결과 · 역검증 목록 · 연례 반복 목록</td></tr><tr><td class="em">함정</td><td>국회 시정요구와 감사원 처분요구는 다른 제도 · 시정요구 문안을 요약하지 않음</td></tr><tr><td class="em">파일</td><td>SKILL.md 하나</td></tr></tbody></table>
+      <p class="lead">팀장 스킬(budget-review)이 순서를 잡고, 팀원은 일마다 <b>정해진 스킬</b>을 읽고 일함</p>
+      <table>
+        <thead><tr><th style="width:19%">스킬</th><th style="width:17%">무엇</th><th>핵심</th><th style="width:21%">누가 읽나</th></tr></thead>
+        <tbody><tr><td class="em"><code>review-criteria</code></td><td>재원 유형별 검토 기준</td><td>표준교재 7권 착안사항 → 유형별 점검 질문</td><td>검토설계자 · 검수관</td></tr><tr><td class="em"><code>budget-sources</code></td><td>자료원과 조회법</td><td>열린재정 · 열린국회정보 · 법령 · 감사원 · PIMAC</td><td>자료조사관 · 검토설계자</td></tr><tr><td class="em"><code>review-writing</code></td><td>집필 규격</td><td>골격 · 번호 Ⅰ→【】→&lt; &gt; · 결론→근거→해명→반박→조치</td><td>집필가</td></tr><tr><td class="em"><code>fiscal-rules</code></td><td>수치 규칙 · 검산기</td><td>회계연도 · 단위 · 분모 · △ · <b class="hot">fiscal_check</b> 재계산</td><td>집필가 · 팀장(검산 게이트)</td></tr><tr><td class="em"><code>review-check</code></td><td>관문 판정 기준</td><td>관문①② 점검표 · [필수]/[권고] · 위치·문제·권고</td><td>검수관</td></tr><tr><td class="em"><code>hwpx-export</code></td><td>한글 변환 절차</td><td>kordoc 범용 모드 · 번호 부호 보존 · 1:1 대조</td><td>변환가</td></tr><tr><td class="em"><code>audit-followup</code></td><td>시정요구 역검증</td><td>"조치완료" 보고를 집행 · 제도 변경으로 재확인</td><td>시정요구 조치결과 절</td></tr></tbody>
+      </table>
+      <div class="callout">스킬은 <b>md 파일</b> · 고치면 팀 전체의 일하는 법이 바뀜</div>
     </section>
     <section class="slide" data-sid="a24">
       <div class="eyebrow">Ⅲ · 작성팀</div>
